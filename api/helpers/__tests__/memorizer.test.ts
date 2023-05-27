@@ -1,6 +1,6 @@
 import { memorize } from '../memorizer';
-describe('memoizedFunc', () => {
-    it('should cache and return memoized values', () => {
+describe('memorizedFunc', () => {
+    it('should cache and return memorized values', () => {
         const originalFunction = jest.fn((x:number , y: number) => x + y);
       
         const memoizedFunction = memorize(originalFunction);
