@@ -1,7 +1,7 @@
-import { memorize } from '../memorizer'
+import { memorize } from '../memorizer';
 describe('memoizedFunc', () => {
     it('should cache and return memoized values', () => {
-        const originalFunction = jest.fn((x: number, y: number) => x + y);
+        const originalFunction = jest.fn((x:number , y: number) => x + y);
       
         const memoizedFunction = memorize(originalFunction);
       
@@ -16,7 +16,7 @@ describe('memoizedFunc', () => {
       });
   
     it('should calculate and cache different values for different arguments', () => {
-      const originalFunction = jest.fn((x: number, y: number) => x + y);
+      const originalFunction = jest.fn((x, y) => x + y);
   
       const memorizedFunction = memorize(originalFunction);
   
