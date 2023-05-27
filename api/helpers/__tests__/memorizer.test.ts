@@ -16,7 +16,7 @@ describe('memorizedFunc', () => {
       });
   
     it('should calculate and cache different values for different arguments', () => {
-      const originalFunction = jest.fn((x, y) => x + y);
+      const originalFunction = jest.fn((x:number, y: number ) => x + y);
   
       const memorizedFunction = memorize(originalFunction);
   
