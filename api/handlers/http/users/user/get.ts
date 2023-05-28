@@ -1,6 +1,6 @@
 import { APIGatewayProxyEvent, APIGatewayProxyHandler, APIGatewayProxyResult } from 'aws-lambda';
 import { found } from '../../httpResponses';
-import { getUser } from '../../../../repositories/account';
+import { getUser } from '../../../../repositories/user';
 
 export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
   const userId: number | undefined = event.pathParameters?.userId ? Number(event.pathParameters.userId) : undefined;

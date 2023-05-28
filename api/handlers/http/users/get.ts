@@ -1,5 +1,5 @@
 import { APIGatewayProxyEvent, APIGatewayProxyHandler, APIGatewayProxyResult } from 'aws-lambda';
-import { getUsers } from '../../../repositories/account';
+import { getUsers } from '../../../repositories/user';
 import { found } from '../httpResponses';
 
 export const handler: APIGatewayProxyHandler = async (
