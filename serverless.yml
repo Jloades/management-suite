@@ -1,0 +1,20 @@
+service: management-suite
+
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs12.x
+
+functions:
+  getAccount:
+    handler: api\handlers\http\accounts\account\get.handler
+    events:
+      - http:
+          path: /accounts/{accountId}
+          method: get
+plugins:
+  - serverless-offline
+
+
+
