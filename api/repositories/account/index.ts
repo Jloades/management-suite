@@ -15,7 +15,7 @@ let accounts: AccountDetails[] = [
     { id: 6, name: 'Jane Doe', address: '456 also St', phone: '555-1453', email: 'jane.doe@example.com' }
 ]
 
-export async function getAccountDetails(accountId: number) : Promise<AccountDetails> {
+export async function getUser(accountId: number) : Promise<AccountDetails> {
     const account: AccountDetails | undefined = accounts.find(acc => acc.id === accountId);
 
   if (account) {
@@ -23,4 +23,33 @@ export async function getAccountDetails(accountId: number) : Promise<AccountDeta
   } else {
     throw new Error('Account not found');
   }
+}
+
+export async function getUsers(): Promise<AccountDetails[]> {
+  return Promise.resolve(accounts);
+}
+
+export async function createUser(accountId:number, name:string, address:string, phone:string, email:string) : Promise<AccountDetails> {
+  const newUser: AccountDetails = {
+    id: accountId, 
+    name,
+    address,
+    phone,
+    email
+  };
+  
+  accounts.push(newUser)
+  return newUser
+}
+
+export async function deleteAccount(accountId: number) : Promise<AccountDetails> {
+  const accountIndex = accounts.findIndex(acc => acc.id === accountId);
+
+  if (accountIndex !== -1) {
+    const deletedAccount = accounts.splice(accountIndex, 1)[0];
+    return Promise.resolve(deletedAccount);
+  } else {
+    throw new Error('Account not found');
+  }
+
 }

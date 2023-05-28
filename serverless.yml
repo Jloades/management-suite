@@ -8,10 +8,10 @@ provider:
 
 functions:
   getAccount:
-    handler: api\handlers\http\accounts\account\get.handler
+    handler: api\handlers\http\users\user\get.handler
     events:
       - http:
-          path: /accounts/{accountId}
+          path: /users/{userId}
           method: get
 plugins:
   - serverless-offline

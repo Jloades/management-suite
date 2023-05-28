@@ -5,3 +5,23 @@ export const found = (body: unknown, headers = {}): APIGatewayProxyResult => ({
     headers,
     body: JSON.stringify(body),
 });
+
+export const created = (body: unknown, headers = {}): APIGatewayProxyResult => ({
+    statusCode: 201,
+    headers,
+    body: JSON.stringify(body),
+});
+
+export const badRequest = (message:string): APIGatewayProxyResult => ({
+    statusCode: 400,
+    body: JSON.stringify({message}),
+})
+
+export const noContent = (): APIGatewayProxyResult => ({
+    statusCode: 204,
+    body: ''
+});
+export const notFound = (message = 'No resource found with this ID'): APIGatewayProxyResult => ({
+    statusCode: 404,
+    body:JSON.stringify({message})
+});
