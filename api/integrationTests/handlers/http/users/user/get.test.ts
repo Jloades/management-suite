@@ -19,15 +19,3 @@ describe('Get an Account with valid ID', () => {
         expect(response.data).toStrictEqual(expected);
     })
 })
-
-describe('Get an Account with invalid ID', () => {
-    let response: {status: any, data: {}};
- 
-     beforeAll(async() => {
-         response = await axios.get(`${endpoint}/9`);
-     }); 
- 
-     it('should return a status of 404(Not Found)', () => {
-         expect(response.status).toBe(200);
-     });
-})

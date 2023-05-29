@@ -58,7 +58,7 @@ function createUser(name, address, phone, email) {
             address: address,
             phone: phone,
             email: email
-        };d
+        };
         accounts.push(newUser);
         return newUser;
     });

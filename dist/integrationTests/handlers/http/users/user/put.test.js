@@ -16,23 +16,11 @@ const axios_1 = __importDefault(require("axios"));
 const endpoint = 'http://localhost:3000/dev/users';
 describe('Get an Account with valid ID', () => {
     let response;
-    const expected = { results: { id: 5, name: 'John Bones', address: '123 alsotest St', phone: '555-6345', email: 'john.bones@example.com' } };
+    const body = { "id": 5, "name": 'test', "address": '123 testy St', "phone": '123-5325', "email": 'test@example.com' };
     beforeAll(() => __awaiter(void 0, void 0, void 0, function* () {
-        response = yield axios_1.default.get(`${endpoint}/5`);
+        response = yield axios_1.default.put(`${endpoint}/5`, body);
     }));
-    it('should return a status of 200(OK)', () => {
-        expect(response.status).toBe(200);
-    });
-    it('should return the correct data', () => {
-        expect(response.data).toStrictEqual(expected);
-    });
-});
-describe('Get an Account with invalid ID', () => {
-    let response;
-    beforeAll(() => __awaiter(void 0, void 0, void 0, function* () {
-        response = yield axios_1.default.get(`${endpoint}/9`);
-    }));
-    it('should return a status of 404(Not Found)', () => {
-        expect(response.status).toBe(404);
+    it('should return a status of 204(no Content)', () => {
+        expect(response.status).toBe(204);
     });
 });
