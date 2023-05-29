@@ -29,9 +29,9 @@ export async function getUsers(): Promise<AccountDetails[]> {
   return Promise.resolve(accounts);
 }
 
-export async function createUser(accountId:number, name:string, address:string, phone:string, email:string) : Promise<AccountDetails> {
+export async function createUser(name:string, address:string, phone:string, email:string) : Promise<AccountDetails> {
   const newUser: AccountDetails = {
-    id: accountId, 
+    id: accounts.length +1, 
     name,
     address,
     phone,
@@ -39,6 +39,8 @@ export async function createUser(accountId:number, name:string, address:string, 
   };
   
   accounts.push(newUser)
+
+  console.log(accounts);
   return newUser
 }
 

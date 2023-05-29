@@ -5,15 +5,15 @@ import { deleteAccount } from '../../../../repositories/user';
 export const handler: APIGatewayProxyHandler = async (
   event: APIGatewayProxyEvent
 ): Promise<APIGatewayProxyResult> => {
-  const accountId: number | undefined = event.pathParameters?.accountId
-    ? Number(event.pathParameters.accountId)
+  const userId: number | undefined = event.pathParameters?.userId
+    ? Number(event.pathParameters.userId)
     : undefined;
 
-  if (!accountId) {
-    throw new Error('Account ID Required');
+  if (!userId) {
+    throw new Error('User ID Required');
   }
 
-  const deleted = await deleteAccount(accountId);
+  const deleted = await deleteAccount(userId);
 
   if (deleted) {
     return noContent();

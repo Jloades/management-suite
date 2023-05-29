@@ -1,19 +1,14 @@
 {
   "compilerOptions": {
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
-    "allowSyntheticDefaultImports": true,
-    "strict": true,
-    "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true,
+    "target": "es6",
     "module": "commonjs",
-    "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "noEmit": true,
-    "jsx": "react-jsx"
+    "lib": ["dom", "es2015"],
+    "outDir": "dist",
+    "rootDir": "api",
+    "strict": true,
+    "esModuleInterop": true,
+    "jsx": "preserve"
   },
-  "include": ["src"]
+  "include": ["api"],
+  "exclude": ["node_modules"]
 }

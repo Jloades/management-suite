@@ -11,9 +11,9 @@ export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEven
 
     const requestBody = JSON.parse(event.body);
 
-    const { accountId, name,address,phone, email } = requestBody;
+    const { name,address,phone, email } = requestBody;
     
-    const newUser = await createUser(accountId, name, address, phone, email );
+    const newUser = await createUser(name, address, phone, email );
 
     return created({ user: newUser });
   } catch (error) {

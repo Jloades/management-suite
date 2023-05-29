@@ -7,11 +7,29 @@ provider:
   runtime: nodejs12.x
 
 functions:
-  getAccount:
-    handler: api\handlers\http\users\user\get.handler
+  getUser:
+    handler: ./dist\handlers/http/users/user/get.handler
     events:
       - http:
           path: /users/{userId}
+          method: get
+  deleteUser:
+    handler: ./dist\handlers/http/users/user/delete.handler
+    events:
+      - http:
+          path: /users/{userId}
+          method: delete
+  postUser:
+    handler: ./dist\handlers/http/users/user/post.handler
+    events:
+      - http:
+          path: /users
+          method: post
+  getUsers:
+    handler: ./dist\handlers\http\users\get.handler  
+    events:
+      - http:
+          path: /users
           method: get
 plugins:
   - serverless-offline
