@@ -12,12 +12,18 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.handler = void 0;
 const httpResponses_1 = require("../../httpResponses");
 const user_1 = require("../../../../repositories/user");
-exports.handler = (event) => __awaiter(void 0, void 0, void 0, function* () {
+const handler = (event) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
     const userId = ((_a = event.pathParameters) === null || _a === void 0 ? void 0 : _a.userId) ? Number(event.pathParameters.userId) : undefined;
     if (!userId) {
         throw new Error('Account ID Required');
     }
-    const account = yield user_1.getUser(userId);
-    return httpResponses_1.found({ results: account });
+    try {
+        const account = yield (0, user_1.getUser)(userId);
+        return (0, httpResponses_1.found)({ results: account });
+    }
+    catch (error) {
+        return (0, httpResponses_1.notFound)();
+    }
 });
+exports.handler = handler;

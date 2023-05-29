@@ -17,9 +17,9 @@ export const badRequest = (message:string): APIGatewayProxyResult => ({
     body: JSON.stringify({message}),
 })
 
-export const noContent = (): APIGatewayProxyResult => ({
+export const noContent = (body: unknown): APIGatewayProxyResult => ({
     statusCode: 204,
-    body: ''
+    body: JSON.stringify(body),
 });
 export const notFound = (message = 'No resource found with this ID'): APIGatewayProxyResult => ({
     statusCode: 404,

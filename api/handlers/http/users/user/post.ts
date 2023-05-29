@@ -3,8 +3,6 @@ import { created, badRequest } from '../../httpResponses';
 import { createUser } from '../../../../repositories/user';
 
 export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
-  try {
-
     if (!event.body) {
         return badRequest('Request body is required.');
     }
@@ -16,7 +14,4 @@ export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEven
     const newUser = await createUser(name, address, phone, email );
 
     return created({ user: newUser });
-  } catch (error) {
-    return badRequest(error.message);
-  }
 };

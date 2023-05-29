@@ -10,15 +10,22 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.handler = void 0;
-const user_1 = require("../../../repositories/user");
-const httpResponses_1 = require("../httpResponses");
+const httpResponses_1 = require("../../httpResponses");
+const user_1 = require("../../../../repositories/user");
 const handler = (event) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        const accounts = yield (0, user_1.getUsers)();
-        return (0, httpResponses_1.found)({ results: accounts });
+    var _a;
+    const userId = ((_a = event.pathParameters) === null || _a === void 0 ? void 0 : _a.userId) ? Number(event.pathParameters.userId) : undefined;
+    if (!userId || !event.body) {
+        return (0, httpResponses_1.badRequest)('Request missing Information');
     }
-    catch (err) {
-        throw new Error(err.message);
+    const requestBody = JSON.parse(event.body);
+    const { name, address, phone, email } = requestBody;
+    try {
+        const updatedUser = yield (0, user_1.updateUser)(userId, name, address, phone, email);
+        return (0, httpResponses_1.noContent)(updatedUser);
+    }
+    catch (error) {
+        return (0, httpResponses_1.notFound)();
     }
 });
 exports.handler = handler;

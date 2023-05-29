@@ -14,14 +14,17 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const axios_1 = __importDefault(require("axios"));
 const endpoint = 'http://localhost:3000/dev/users';
-describe('Get an Account', () => {
-    const ACCOUNT_ID = '5';
+describe('Get an Account with valid ID', () => {
     let response;
+    const body = { "id": 7, "name": 'test', "address": '123 testy St', "phone": '123-5325', "email": 'test@example.com' };
+    const expected = { "user": { "id": 7, "name": 'test', "address": '123 testy St', "phone": '123-5325', "email": 'test@example.com' } };
     beforeAll(() => __awaiter(void 0, void 0, void 0, function* () {
-        response = yield axios_1.default.get(`${endpoint}/${ACCOUNT_ID}`);
+        response = yield axios_1.default.post(endpoint, body);
     }));
-    it('should get an account by ID', () => {
-        expect(response.status).toBe(200);
-        expect(response.data).toBeDefined();
+    it('should return a status of 201(created)', () => {
+        expect(response.status).toBe(201);
+    });
+    it('should return new user', () => {
+        expect(response.data).toStrictEqual(expected);
     });
 });

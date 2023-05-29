@@ -12,18 +12,20 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.handler = void 0;
 const httpResponses_1 = require("../../httpResponses");
 const user_1 = require("../../../../repositories/user");
-exports.handler = (event) => __awaiter(void 0, void 0, void 0, function* () {
+const handler = (event) => __awaiter(void 0, void 0, void 0, function* () {
     var _a;
-    const accountId = ((_a = event.pathParameters) === null || _a === void 0 ? void 0 : _a.accountId) ? Number(event.pathParameters.accountId)
+    const userId = ((_a = event.pathParameters) === null || _a === void 0 ? void 0 : _a.userId)
+        ? Number(event.pathParameters.userId)
         : undefined;
-    if (!accountId) {
-        throw new Error('Account ID Required');
+    if (!userId) {
+        throw new Error('User ID Required');
     }
-    const deleted = yield user_1.deleteAccount(accountId);
+    const deleted = yield (0, user_1.deleteAccount)(userId);
     if (deleted) {
-        return httpResponses_1.noContent();
+        return (0, httpResponses_1.noContent)({ results: deleted });
     }
     else {
-        return httpResponses_1.notFound();
+        return (0, httpResponses_1.notFound)();
     }
 });
+exports.handler = handler;

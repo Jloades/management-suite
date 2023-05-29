@@ -9,8 +9,8 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteAccount = exports.createUser = exports.getUsers = exports.getUser = void 0;
-let accounts = [
+exports.deleteAccount = exports.createUser = exports.getUsers = exports.updateUser = exports.getUser = void 0;
+const accounts = [
     { id: 1, name: 'John Doe', address: '123 test St', phone: '555-1234', email: 'john.doe@example.com' },
     { id: 2, name: 'Jane Smith', address: '456 test St', phone: '555-5678', email: 'jane.smith@example.com' },
     { id: 3, name: 'John Joe', address: '123 Main St', phone: '555-1263', email: 'john.joe@example.com' },
@@ -30,21 +30,35 @@ function getUser(accountId) {
     });
 }
 exports.getUser = getUser;
+function updateUser(accountId, name, address, phone, email) {
+    return __awaiter(this, void 0, void 0, function* () {
+        const accountIndex = accounts.findIndex((acc) => acc.id === accountId);
+        if (accountIndex !== -1) {
+            const updatedAccount = Object.assign(Object.assign({}, accounts[accountIndex]), { name: name || accounts[accountIndex].name, address: address || accounts[accountIndex].address, phone: phone || accounts[accountIndex].phone, email: email || accounts[accountIndex].email });
+            accounts[accountIndex] = updatedAccount;
+            return Promise.resolve(updatedAccount);
+        }
+        else {
+            throw new Error('Account not found');
+        }
+    });
+}
+exports.updateUser = updateUser;
 function getUsers() {
     return __awaiter(this, void 0, void 0, function* () {
-        return Promise.resolve(accounts);
+        return Promise.resolve([...accounts]);
     });
 }
 exports.getUsers = getUsers;
-function createUser(accountId, name, address, phone, email) {
+function createUser(name, address, phone, email) {
     return __awaiter(this, void 0, void 0, function* () {
         const newUser = {
-            id: accountId,
-            name,
-            address,
-            phone,
-            email
-        };
+            id: accounts.length + 1,
+            name: name,
+            address: address,
+            phone: phone,
+            email: email
+        };d
         accounts.push(newUser);
         return newUser;
     });

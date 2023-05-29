@@ -16,7 +16,7 @@ export const handler: APIGatewayProxyHandler = async (
   const deleted = await deleteAccount(userId);
 
   if (deleted) {
-    return noContent();
+    return noContent({results: deleted});
   } else {
     return notFound();
   }

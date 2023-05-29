@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.arabicToRoman = void 0;
-exports.arabicToRoman = (num) => {
+const arabicToRoman = (num) => {
     const romanNumerals = {
         1000: 'M',
         900: 'CM',
@@ -26,3 +26,4 @@ exports.arabicToRoman = (num) => {
     }
     return romanNumeral;
 };
+exports.arabicToRoman = arabicToRoman;

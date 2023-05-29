@@ -4,7 +4,7 @@ frameworkVersion: '3'
 
 provider:
   name: aws
-  runtime: nodejs12.x
+  runtime: nodejs16.x
 
 functions:
   getUser:
@@ -25,6 +25,12 @@ functions:
       - http:
           path: /users
           method: post
+  putUser:
+    handler: ./dist\handlers/http/users/user/put.handler
+    events:
+      - http:
+          path: /users/{userId}
+          method: put
   getUsers:
     handler: ./dist\handlers\http\users\get.handler  
     events:

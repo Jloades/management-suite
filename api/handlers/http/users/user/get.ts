@@ -1,5 +1,5 @@
 import { APIGatewayProxyEvent, APIGatewayProxyHandler, APIGatewayProxyResult } from 'aws-lambda';
-import { found } from '../../httpResponses';
+import { found, notFound } from '../../httpResponses';
 import { getUser } from '../../../../repositories/user';
 
 export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEvent): Promise<APIGatewayProxyResult> => {
@@ -9,7 +9,12 @@ export const handler: APIGatewayProxyHandler = async (event: APIGatewayProxyEven
     throw new Error('Account ID Required');
   }
 
-  const account = await getUser(userId);
-
-  return found({ results: account });
+  try{
+    const account = await getUser(userId);
+    return found({ results: account });
+  }
+  catch (error) {
+    return notFound();
+  }
+  
 };

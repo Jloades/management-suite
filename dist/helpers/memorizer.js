@@ -1,7 +1,7 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.memorize = void 0;
-exports.memorize = (func) => {
+const memorize = (func) => {
     const cache = new Map();
     const memorizedFunc = (...args) => {
         const key = JSON.stringify(args);
@@ -15,3 +15,4 @@ exports.memorize = (func) => {
     memorizedFunc.cache = cache;
     return memorizedFunc;
 };
+exports.memorize = memorize;

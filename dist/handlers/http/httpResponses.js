@@ -1,25 +1,30 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.notFound = exports.noContent = exports.badRequest = exports.created = exports.found = void 0;
-exports.found = (body, headers = {}) => ({
+const found = (body, headers = {}) => ({
     statusCode: 200,
     headers,
     body: JSON.stringify(body),
 });
-exports.created = (body, headers = {}) => ({
+exports.found = found;
+const created = (body, headers = {}) => ({
     statusCode: 201,
     headers,
     body: JSON.stringify(body),
 });
-exports.badRequest = (message) => ({
+exports.created = created;
+const badRequest = (message) => ({
     statusCode: 400,
     body: JSON.stringify({ message }),
 });
-exports.noContent = () => ({
+exports.badRequest = badRequest;
+const noContent = (body) => ({
     statusCode: 204,
-    body: ''
+    body: JSON.stringify(body),
 });
-exports.notFound = (message = 'No resource found with this ID') => ({
+exports.noContent = noContent;
+const notFound = (message = 'No resource found with this ID') => ({
     statusCode: 404,
     body: JSON.stringify({ message })
 });
+exports.notFound = notFound;

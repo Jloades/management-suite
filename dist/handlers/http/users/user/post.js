@@ -12,17 +12,13 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.handler = void 0;
 const httpResponses_1 = require("../../httpResponses");
 const user_1 = require("../../../../repositories/user");
-exports.handler = (event) => __awaiter(void 0, void 0, void 0, function* () {
-    try {
-        if (!event.body) {
-            return httpResponses_1.badRequest('Request body is required.');
-        }
-        const requestBody = JSON.parse(event.body);
-        const { accountId, name, address, phone, email } = requestBody;
-        const newUser = yield user_1.createUser(accountId, name, address, phone, email);
-        return httpResponses_1.created({ user: newUser });
+const handler = (event) => __awaiter(void 0, void 0, void 0, function* () {
+    if (!event.body) {
+        return (0, httpResponses_1.badRequest)('Request body is required.');
     }
-    catch (error) {
-        return httpResponses_1.badRequest(error.message);
-    }
+    const requestBody = JSON.parse(event.body);
+    const { name, address, phone, email } = requestBody;
+    const newUser = yield (0, user_1.createUser)(name, address, phone, email);
+    return (0, httpResponses_1.created)({ user: newUser });
 });
+exports.handler = handler;

@@ -12,7 +12,7 @@ describe('arabicToRoman', () => {
         [-50, 'Number Must Be Greater than 0'],
         [9999, 'MMMMMMMMMCMXCIX']
     ])('Given a request providing the number %s, I should get back %s', (number, expected) => {
-        const result = numeralConverter_1.arabicToRoman(number);
+        const result = (0, numeralConverter_1.arabicToRoman)(number);
         expect(result).toBe(expected);
     });
 });
